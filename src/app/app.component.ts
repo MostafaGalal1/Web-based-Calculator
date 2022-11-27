@@ -157,8 +157,23 @@ export class AppComponent {
   }
 
   Request(type: number){
+    var requestResult: String;
+    if (type) {
+      requestResult = this.transmitService.binaryRequest(this.first_val, this.second_val, this.bi_operator);
+    } else {
+      requestResult = this.transmitService.uniaryRequest(this.first_val, this.un_operator);
+    }
 
-    return '0';
+    this.replaceable = false;
+    this.updated = false;
+    this.precalculated = true;
+
+    if (requestResult === 'Error' || requestResult === 'Infinity' || requestResult === 'NaN') {
+      this.error = true;
+      return 'E';
+    }
+    
+    return requestResult;
   }
 
   Calculate() {
