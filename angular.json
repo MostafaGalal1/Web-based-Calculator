@@ -70,11 +70,7 @@
               "browserTarget": "Web-Based-Calculator:build:development"
             }
           },
-          "defaultConfiguration": "development",
-          "options": {
-            "browserTarget": "move-safe:build",
-            "proxyConfig": "src/proxy.conf.json"
-          }
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

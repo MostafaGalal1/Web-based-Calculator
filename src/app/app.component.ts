@@ -17,37 +17,11 @@ export class AppComponent {
   private precalculated:boolean = false;
   private error:boolean = false;
   private un_operator:string = '';
-  private bi_operator:string = '';
+  public bi_operator:string = '';
   private first_val:number = 0;
   private second_val:number = 0;
 
-  constructor(private displayService: DisplayService, private transmitService: TransmitService){
-    document.addEventListener('keydown', (event) => {
-      var name = event.key;
-      var code = event.code;
-
-      if (code.indexOf("Digit") === 0 || code === "Period")
-        this.Display(name);
-      else if (name === '+' || name === '-' || name === '*' || name === '/') {
-        if (name === '-')
-            name = '−';
-        else if (name === '*')
-            name = '×';
-        else if (name === '/')
-            name = '÷';
-
-        if (this.bi_operator === '')
-          this.Operation(name);
-        else {
-          this.Calculate();
-          this.Operation(name);
-        }
-      } else if (name === "Enter")
-        this.Calculate();
-      else if (name === "Backspace")
-        this.Backspace();
-    }, false);
-  }
+  constructor(private displayService: DisplayService, private transmitService: TransmitService){ }
 
   Display(val:string) {
     if (this.precalculated)
