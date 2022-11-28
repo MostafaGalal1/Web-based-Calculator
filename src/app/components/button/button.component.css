@@ -3,6 +3,7 @@
     height: auto;
     border: none;
     grid-column: 4/5;
+    color: black;
     font-size: 1.5rem;
     inline-size: 95px;
     block-size: 65px;
@@ -16,6 +17,7 @@
 .key {
     background: hsl(210, 25%, 95%);
     border: none;
+    color: black;
     font-size: 1.5rem;
     inline-size: 95px;
     block-size: 65px;
@@ -29,6 +31,7 @@
 .operator {
     background: hsl(208, 25%, 86%);
     border: none;
+    color: black;
     font-size: 1.5rem;
     inline-size: 95px;
     block-size: 65px;
