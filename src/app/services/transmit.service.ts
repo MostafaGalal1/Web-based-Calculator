@@ -12,6 +12,7 @@ export class TransmitService {
   uniaryRequest(first_val:number, un_operator:string){
     var un_url: string = this.url + "un_operator";
     var un_local_url: string = this.local_url + "un_operator";
+    var pack: string;
 
     var un_data: any;
     un_data = {
@@ -19,8 +20,10 @@ export class TransmitService {
         "operator": String(un_operator)
     };
 
-    un_url =  un_url + '?' + Object.keys(un_data).map(function (key) { return [key, un_data[key]].map(encodeURIComponent).join("="); }).join("&");
-    un_local_url = un_local_url + '?' + Object.keys(un_data).map(function (key) { return [key, un_data[key]].map(encodeURIComponent).join("="); }).join("&");
+    pack =  Object.keys(un_data).map(function (key) { return [key, un_data[key]].map(encodeURIComponent).join("="); }).join("&");
+
+    un_url = un_url + '?' + pack;
+    un_local_url = un_local_url + '?' + pack;
     var xhr = new XMLHttpRequest();
 
     try {
@@ -35,8 +38,9 @@ export class TransmitService {
   }
 
   binaryRequest(first_val:number, second_val:number, bi_operator:string){
-    var bi_url:string = this.url + "bi_operator";
-    var bi_local_url:string = this.local_url + "bi_operator";
+    var bi_url: string = this.url + "bi_operator";
+    var bi_local_url: string = this.local_url + "bi_operator";
+    var pack: string;
 
     var bi_data :any;
     bi_data = {
@@ -45,8 +49,10 @@ export class TransmitService {
         "second_operand": String(second_val)
     };
 
-    bi_url =  bi_url + '?' + Object.keys(bi_data).map(function (key) { return [key, bi_data[key]].map(encodeURIComponent).join("="); }).join("&");
-    bi_local_url = bi_local_url+ '?' + Object.keys(bi_data).map(function (key) { return [key, bi_data[key]].map(encodeURIComponent).join("="); }).join("&");
+    pack = Object.keys(bi_data).map(function (key) { return [key, bi_data[key]].map(encodeURIComponent).join("="); }).join("&");
+    
+    bi_url = bi_url + '?' + pack;
+    bi_local_url = bi_local_url+ '?' + pack;
     var xhr = new XMLHttpRequest();
 
     try {
