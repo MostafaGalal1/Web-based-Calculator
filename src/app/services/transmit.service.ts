@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TransmitService {
-  private url:string = "http://localhost:8080/workout/";
+  private url:string = "https://git.heroku.com/web-based-calculator.git";
 
   constructor() { }
 
