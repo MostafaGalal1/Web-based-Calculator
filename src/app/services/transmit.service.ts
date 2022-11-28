@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class TransmitService {
   private url:string = "https://web-based-calculator.herokuapp.com/workout/";
   private local_url:string = "http://localhost:8080/workout/";
+  private global:boolean = false;
 
   constructor() { }
 
@@ -26,12 +27,18 @@ export class TransmitService {
     un_local_url = un_local_url + '?' + pack;
     var xhr = new XMLHttpRequest();
 
-    try {
-      xhr.open("GET", un_local_url, false);
-      xhr.send();
-    } catch(e:unknown){
+    if (this.global){
       xhr.open("GET", un_url, false);
       xhr.send();
+    } else {
+      try {
+        xhr.open("GET", un_local_url, false);
+        xhr.send();
+      } catch(e:unknown){
+        this.global = true;
+        xhr.open("GET", un_url, false);
+        xhr.send();
+      }
     }
 
     return xhr.responseText;
@@ -55,12 +62,18 @@ export class TransmitService {
     bi_local_url = bi_local_url+ '?' + pack;
     var xhr = new XMLHttpRequest();
 
-    try {
-      xhr.open("GET", bi_local_url, false);
-      xhr.send();
-    } catch(e:unknown){
+    if (this.global){
       xhr.open("GET", bi_url, false);
       xhr.send();
+    } else {
+      try {
+        xhr.open("GET", bi_local_url, false);
+        xhr.send();
+      } catch(e:unknown) {
+        this.global = true;
+        xhr.open("GET", bi_url, false);
+        xhr.send();
+      }
     }
 
     return xhr.responseText;
