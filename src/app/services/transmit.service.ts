@@ -5,11 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class TransmitService {
   private url:string = "https://web-based-calculator.herokuapp.com/workout/";
+  private local_url:string = "http://localhost:8080/workout/";
 
   constructor() { }
 
   uniaryRequest(first_val:number, un_operator:string){
     var un_url: string = this.url + "un_operator";
+    var un_local_url: string = this.local_url + "un_operator";
+
     var un_data: any;
     un_data = {
         "operand": String(first_val),
@@ -17,15 +20,24 @@ export class TransmitService {
     };
 
     un_url =  un_url + '?' + Object.keys(un_data).map(function (key) { return [key, un_data[key]].map(encodeURIComponent).join("="); }).join("&");
+    un_local_url = un_local_url + '?' + Object.keys(un_data).map(function (key) { return [key, un_data[key]].map(encodeURIComponent).join("="); }).join("&");
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", un_url, false);
-    xhr.send();
+
+    try {
+      xhr.open("GET", un_local_url, false);
+      xhr.send();
+    } catch(e:unknown){
+      xhr.open("GET", un_url, false);
+      xhr.send();
+    }
 
     return xhr.responseText;
   }
 
   binaryRequest(first_val:number, second_val:number, bi_operator:string){
     var bi_url:string = this.url + "bi_operator";
+    var bi_local_url:string = this.local_url + "bi_operator";
+
     var bi_data :any;
     bi_data = {
         "first_operand": String(first_val),
@@ -34,9 +46,16 @@ export class TransmitService {
     };
 
     bi_url =  bi_url + '?' + Object.keys(bi_data).map(function (key) { return [key, bi_data[key]].map(encodeURIComponent).join("="); }).join("&");
+    bi_local_url = bi_local_url+ '?' + Object.keys(bi_data).map(function (key) { return [key, bi_data[key]].map(encodeURIComponent).join("="); }).join("&");
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", bi_url, false);
-    xhr.send();
+
+    try {
+      xhr.open("GET", bi_local_url, false);
+      xhr.send();
+    } catch(e:unknown){
+      xhr.open("GET", bi_url, false);
+      xhr.send();
+    }
 
     return xhr.responseText;
   }
