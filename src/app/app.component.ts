@@ -17,13 +17,12 @@ export class AppComponent {
   private precalculated:boolean = false;
   private error:boolean = false;
   private un_operator:string = '';
-  public bi_operator:string = '+';
+  public bi_operator:string = '';
   private first_val:number = 0;
   private second_val:number = 0;
 
   constructor(private displayService: DisplayService, private transmitService: TransmitService){ 
-    this.Request(1);
-    this.bi_operator = '';
+
   }
 
   Display(val:string) {
