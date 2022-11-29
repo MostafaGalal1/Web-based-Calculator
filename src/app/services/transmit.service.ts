@@ -62,19 +62,8 @@ export class TransmitService {
     bi_local_url = bi_local_url+ '?' + pack;
     var xhr = new XMLHttpRequest();
 
-    if (this.global){
-      xhr.open("GET", bi_url, false);
-      xhr.send();
-    } else {
-      try {
-        xhr.open("GET", bi_local_url, false);
-        xhr.send();
-      } catch(e:unknown) {
-        this.global = true;
         xhr.open("GET", bi_url, false);
         xhr.send();
-      }
-    }
 
     return xhr.responseText;
   }
