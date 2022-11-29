@@ -33,9 +33,7 @@ export class TransmitService {
     } else {
       try {
         xhr.open("GET", un_local_url, false);
-        xhr.send();
-
-        if (xhr.responseText === "undefined")
+        if (xhr.send() == undefined)
           this.global = true;
       } catch(e:unknown){
         this.global = true;
@@ -71,9 +69,7 @@ export class TransmitService {
     } else {
       try {
         xhr.open("GET", bi_local_url, false);
-        xhr.send();
-
-        if (xhr === undefined)
+        if (xhr.send() == undefined)
           this.global = true;
       } catch(e:unknown) {
         this.global = true;
