@@ -28,12 +28,21 @@ export class TransmitService {
     var xhr = new XMLHttpRequest();
 
     if (this.global){
-      xhr.open("GET", un_url, false);
-      xhr.send();
+      try {
+        xhr.open("GET", un_url, false);
+        xhr.send();
+        if (xhr.responseText === '')
+            this.global = false;
+      } catch(e:unknown){
+        this.global = false;
+        xhr.open("GET", un_local_url, false);
+        xhr.send();
+      }
     } else {
       try {
         xhr.open("GET", un_local_url, false);
-        if (xhr.send() == undefined)
+        xhr.send();
+        if (xhr.responseText === '')
           this.global = true;
       } catch(e:unknown){
         this.global = true;
@@ -64,12 +73,21 @@ export class TransmitService {
     var xhr = new XMLHttpRequest();
 
     if (this.global){
-      xhr.open("GET", bi_url, false);
-      xhr.send();
+      try {
+        xhr.open("GET", bi_url, false);
+        xhr.send();
+        if (xhr.responseText === '')
+            this.global = false;
+      } catch(e:unknown){
+        this.global = false;
+        xhr.open("GET", bi_local_url, false);
+        xhr.send();
+      }
     } else {
       try {
         xhr.open("GET", bi_local_url, false);
-        if (xhr.send() == undefined)
+        xhr.send();
+        if (xhr.responseText === '')
           this.global = true;
       } catch(e:unknown) {
         this.global = true;
